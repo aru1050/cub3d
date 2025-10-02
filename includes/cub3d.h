@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/07/24 13:33:09 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/02 11:48:10 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,16 @@ typedef struct s_map
 	int		width;       // largeur max de la carte
 	int		height;      // hauteur de la carte (nb lignes)
 }	t_map;
+
+typedef struct s_keys
+{
+	int	w;
+	int a;
+	int s;
+	int d;
+	int left;
+	int right;
+}	t_keys;
 
 typedef struct s_data
 {
