@@ -6,13 +6,12 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/02 14:57:07 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:37:53 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -22,6 +21,9 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
+# define ESC 65307
+# define WIDTH 800
+# define HEIGHT 800
 
 typedef struct s_color
 {
@@ -93,5 +95,7 @@ typedef struct s_data
 	int			screen_width;
 	int			screen_height;
 }	t_data;
+
+void init_cub(t_data *config, char **argv);
 
 #endif
