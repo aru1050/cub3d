@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/07 11:37:53 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:01:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 
 # define ESC 65307
 # define WIDTH 800
 # define HEIGHT 800
+# define TILE_SIZE 64 // taille du bloc 64 pixels
+# define FOV 60 // angle de 60°
+
 
 typedef struct s_color
 {
@@ -92,10 +97,18 @@ typedef struct s_data
 	t_map		map;       // structure carte
 	t_player	player;    // structure joueur
 
+	t_keys		keys;       // nouvel ajout
+	double		fov;        // champ de vision
+	int			tile_size;  // taille d’un carré de la map
+
 	int			screen_width;
 	int			screen_height;
 }	t_data;
 
 void init_cub(t_data *config, char **argv);
+void	render_frame(t_data *data);
+
+int	handle_key(int keycode, t_data *data);
+int	close_window(t_data *data);
 
 #endif

@@ -3,11 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/02 14:29:20 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:26:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// int player_move(int key, t_data *data)
+// {
+//     if (key == A)
+        
+//     if (key == W)
+
+//     if (key == D)
+
+//     if (key == X)
+// }
