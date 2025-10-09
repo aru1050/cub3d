@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:20:15 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/08 15:23:09 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/09 11:26:51 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ int main(int argc, char **argv)
     // parser_mlx(&config);
     init_cub(&data, argv);
     render_frame(&data);
-    mlx_hook(data.win, 2, 1L << 0, handle_key, &data);
+    mlx_key_hook(data.win, handle_key, &data);
     mlx_hook(data.win, 17, 0, close_window, &data);
     mlx_loop(data.mlx);
-    // draw_mlx(&data);
     // free_mlx(&data);
     return (0);
 }
