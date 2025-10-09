@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/08 15:01:49 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/09 13:17:47 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,7 @@ void	render_frame(t_data *data);
 
 int	handle_key(int keycode, t_data *data);
 int	close_window(t_data *data);
+void init_player(t_player *player);
+
 
 #endif
