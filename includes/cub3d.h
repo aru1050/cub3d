@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/09 13:17:47 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:11:56 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # include "../minilibx-linux/mlx.h"
 
 # define ESC 65307
+# define A 97
+# define W 119
+# define D 100
+# define S 115
+# define RIGHT_ARROW 65363
+# define LEFT_ARROW 65361
 # define WIDTH 800
 # define HEIGHT 800
 # define TILE_SIZE 64 // taille du bloc 64 pixels
@@ -111,6 +117,8 @@ void	render_frame(t_data *data);
 int	handle_key(int keycode, t_data *data);
 int	close_window(t_data *data);
 void init_player(t_player *player);
+void player_move(int key, t_player *player);
+void player_rotate(int key, t_player *player);
 
 
 #endif
