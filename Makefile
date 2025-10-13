@@ -12,6 +12,7 @@ SRCS    =	src/main.c \
 			src/mlx/textures.c \
 			src/parser/parsing.c \
 			src/raycasting/raycasting.c \
+			src/raycasting/dda.c \
 			src/utils/keys.c
 OBJS    = $(SRCS:.c=.o)
 

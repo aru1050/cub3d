@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/09 15:11:56 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/13 14:43:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
-typedef struct s_texture
-{
-	char	*path;       // chemin vers le fichier XPM
-	void	*img;        // image mlx
-	char	*addr;       // adresse mémoire de l’image
-	int		width;
-	int		height;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_texture;
+// typedef struct s_texture
+// {
+// 	char	*path;       // chemin vers le fichier XPM
+// 	void	*img;        // image mlx
+// 	char	*addr;       // adresse mémoire de l’image
+// 	int		width;
+// 	int		height;
+// 	int		bpp;
+// 	int		line_len;
+// 	int		endian;
+// }	t_texture;
 
 typedef struct s_player
 {
@@ -82,6 +82,31 @@ typedef struct s_keys
 	int right;
 }	t_keys;
 
+typedef struct s_ray
+{
+	// direction du rayon et position dans la map
+	double	camera_x;     // position du rayon sur le plan caméra (-1 à +1)
+	double	dir_x;        // direction du rayon en X
+	double	dir_y;        // direction du rayon en Y
+	int		map_x;        // position actuelle dans la map (case X)
+	int		map_y;        // position actuelle dans la map (case Y)
+
+	// calcul DDA (progression du rayon)
+	double	side_x;       // distance jusqu’à la première ligne verticale
+	double	side_y;       // distance jusqu’à la première ligne horizontale
+	double	delta_x;      // distance entre deux lignes verticales
+	double	delta_y;      // distance entre deux lignes horizontales
+	int		step_x;       // direction du pas X (+1 ou -1)
+	int		step_y;       // direction du pas Y (+1 ou -1)
+	int		side;         // 0 = mur vertical, 1 = mur horizontal
+
+	// distance et hauteur du mur
+	double	dist;         // distance au mur
+	int		line_height;  // hauteur de la ligne à dessiner
+	int		draw_start;   // début du dessin à l’écran
+	int		draw_end;     // fin du dessin à l’écran
+}	t_ray;
+
 typedef struct s_data
 {
 	void		*mlx;      // pointeur vers mlx
@@ -92,10 +117,10 @@ typedef struct s_data
 	int			line_len;  // taille d’une ligne
 	int			endian;    // ordre des octets
 
-	t_texture	north;
-	t_texture	south;
-	t_texture	east;
-	t_texture	west;
+	// t_texture	north;
+	// t_texture	south;
+	// t_texture	east;
+	// t_texture	west;
 
 	t_color		floor;     // couleur du sol
 	t_color		ceiling;   // couleur du plafond

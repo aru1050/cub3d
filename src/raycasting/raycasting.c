@@ -3,11 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:01:50 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/02 12:05:51 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/13 16:51:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// int init_ray(t_ray ray)
+// {
+//  ray.camera_x;
+// 	ray.dir_x;
+// 	ray.dir_y;
+// 	ray.map_x;
+// 	ray.map_y;
+// 	ray.side_x;
+// 	ray.side_y;
+// 	ray.delta_x;
+// 	ray.delta_y;
+// 	ray.step_x;
+// 	ray.step_y;
+// 	ray.side;
+// 	ray.dist;
+// 	ray.line_height;
+// 	ray.draw_start;
+// 	ray.draw_end;
+// }
+
+// int cast_rays(t_ray ray)
+// {
+    
+// }
