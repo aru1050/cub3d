@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/13 14:43:18 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/14 13:09:08 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define HEIGHT 800
 # define TILE_SIZE 64 // taille du bloc 64 pixels
 # define FOV 60 // angle de 60°
-
+# define BUG 0
 
 typedef struct s_color
 {

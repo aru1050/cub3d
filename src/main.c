@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:20:15 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/13 12:06:22 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/14 13:05:19 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ int main(int argc, char **argv)
         printf("Invalid number of arguments.\n");
         return (1);
     }
-    // parser_mlx(&config);
+    // parser_mlx(&data);
     init_cub(&data, argv);
     init_player(&data.player);
+    
     render_frame(&data);
     mlx_key_hook(data.win, handle_key, &data);
     mlx_hook(data.win, 17, 0, close_window, &data);
