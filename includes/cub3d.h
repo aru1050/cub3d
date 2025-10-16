@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/14 13:09:08 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/16 19:57:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,17 @@ typedef struct s_color
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-}	t_player;
+	double	x; // position x du joueur
+	double	y; // position y du joueur
+	double	dir_x; // direction du regard axe x
+	double	dir_y; // direction du regard axe y
+	double	plane_x; // plan camera x (perpendiculaire a dir_x)
+	double	plane_y; // plan camera y (perpendiculaire a dir_y)
+	double	move_speed;
+	double	rotate_speed;
+}	t_player; // mettre dans la struc move_speed et rote_speed
 
-typedef struct s_map
+	typedef struct s_map
 {
 	char	**grid;      // tableau 2D contenant la carte
 	int		width;       // largeur max de la carte
@@ -145,5 +147,7 @@ void init_player(t_player *player);
 void player_move(int key, t_player *player);
 void player_rotate(int key, t_player *player);
 
+void init_ray(t_ray *ray, t_player *player, int x);
+void render_frames(t_data *data);
 
 #endif
