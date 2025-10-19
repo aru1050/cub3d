@@ -1,8 +1,5 @@
 #include "cub3d.h"
 
-/* -------------------------------------------------------
-   is_map_line : vérifie si une ligne fait partie de la map
-   ------------------------------------------------------- */
 static int	is_map_line(const char *s)
 {
 	int	i;
@@ -15,11 +12,9 @@ static int	is_map_line(const char *s)
 	while (s[i] && s[i] != '\n')
 	{
 		char c = s[i];
-		// seuls ces caractères sont valides dans la map
 		if (c != ' ' && c != '0' && c != '1'
 			&& c != 'N' && c != 'S' && c != 'E' && c != 'W')
 			return (0);
-		// si on trouve au moins un de ces symboles, on sait que c’est une map
 		if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			has_symbol = 1;
 		i++;
@@ -27,9 +22,6 @@ static int	is_map_line(const char *s)
 	return (has_symbol);
 }
 
-/* -------------------------------------------------------
-   is_blank_line : vérifie si une ligne est vide (ou juste des espaces)
-   ------------------------------------------------------- */
 static int	is_blank_line(const char *s)
 {
 	int	i;
@@ -46,15 +38,12 @@ static int	is_blank_line(const char *s)
 	return (1);
 }
 
-/* -------------------------------------------------------
-   split_config_and_map : sépare cfg et map
-   ------------------------------------------------------- */
 int	split_config_and_map(char **lines, char ***cfg_out, char ***map_out)
 {
 	int		i, in_map, c, m;
 	char	**cfg, **map;
 
-	cfg = malloc(sizeof(char *) * 100); // taille provisoire
+	cfg = malloc(sizeof(char *) * 100); 
 	map = malloc(sizeof(char *) * 100);
 	if (!cfg || !map)
 		return (0);
