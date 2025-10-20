@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:20:15 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/16 14:51:53 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/20 14:42:01 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ int main(int argc, char **argv)
     init_player(&data.player);
     
     render_frames(&data);
-    mlx_key_hook(data.win, handle_key, &data);
+    // mlx_hook(data.win, 17, 0, close_window, &data);
+    // mlx_loop(data.mlx);
+    mlx_hook(data.win, 2, 1L<<0, key_press, &data);
+    mlx_hook(data.win, 3, 1L<<1, key_release, &data);
+    mlx_loop_hook(data.mlx, game_loop, &data);
+    // mlx_key_hook(data.win, handle_key, &data);
     mlx_hook(data.win, 17, 0, close_window, &data);
     mlx_loop(data.mlx);
     // free_mlx(&data);

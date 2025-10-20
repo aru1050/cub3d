@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/16 11:05:53 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/20 14:34:38 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void init_player(t_player *player)
 
 void player_move(int key, t_player *player)
 {
-    double move_speed = 0.15;
+    double move_speed = 0.01;
     
     if (key == A)
     {
@@ -50,7 +50,7 @@ void player_move(int key, t_player *player)
 
 void player_rotate(int key, t_player *player)
 {
-    double rot_speed = 0.15;
+    double rot_speed = 0.01;
     double old_dir_x;
     double old_plane_x;
 

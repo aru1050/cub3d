@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/16 19:57:16 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/20 14:41:50 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,12 @@ typedef struct s_player
 	double	plane_y; // plan camera y (perpendiculaire a dir_y)
 	double	move_speed;
 	double	rotate_speed;
+	int		key_up;
+	int		key_down;
+	int		key_left;
+	int		key_right;
+	int		left_rotate;
+	int		right_rotate;
 }	t_player; // mettre dans la struc move_speed et rote_speed
 
 	typedef struct s_map
@@ -141,7 +147,7 @@ typedef struct s_data
 void init_cub(t_data *config, char **argv);
 void	render_frame(t_data *data);
 
-int	handle_key(int keycode, t_data *data);
+// int	handle_key(int keycode, t_data *data);
 int	close_window(t_data *data);
 void init_player(t_player *player);
 void player_move(int key, t_player *player);
@@ -149,5 +155,10 @@ void player_rotate(int key, t_player *player);
 
 void init_ray(t_ray *ray, t_player *player, int x);
 void render_frames(t_data *data);
+
+int	key_press(int keycode, t_data *data);
+int	key_release(int keycode, t_data *data);
+
+int	game_loop(t_data *data);
 
 #endif
