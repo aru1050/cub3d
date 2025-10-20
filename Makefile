@@ -7,12 +7,9 @@ LIBFT_DIR = libft
 
 SRCS    =	src/main.c \
 			src/mlx/draw.c \
-			src/mlx/mlx_utils.c \
 			src/mlx/player.c \
 			src/mlx/textures.c \
-			src/parser/parsing.c \
 			src/raycasting/raycasting.c \
-			src/raycasting/dda.c \
 			src/utils/keys.c
 OBJS    = $(SRCS:.c=.o)
 
