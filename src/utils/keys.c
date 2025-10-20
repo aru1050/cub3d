@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:04:24 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/20 14:41:36 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/20 15:38:05 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,3 @@ int	close_window(t_data *data)
 	exit(0);
 	return (0);
 }
-
-// int	handle_key(int key, t_data *data)
-// {
-// 	if (key == ESC)
-// 		close_window(data);
-// 	player_move(key, &data->player);
-//     player_rotate(key, &data->player);
-// 	render_frames(data);
-// 	return (0);
-// }

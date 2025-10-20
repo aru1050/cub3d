@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:01:50 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/20 10:29:17 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/20 15:39:12 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void init_ray(t_ray *ray, t_player *player, int x)
 	else
 		ray->delta_y = fabs(1 / ray->dir_y);
 }
+
 static void	init_dda(t_ray *r, t_player *p)
 {
 	if (r->dir_x < 0)
