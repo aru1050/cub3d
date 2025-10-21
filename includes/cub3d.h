@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:22:42 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/20 14:41:50 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/21 15:13:22 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@ typedef struct s_color
 	int	b;
 }	t_color;
 
-// typedef struct s_texture
-// {
-// 	char	*path;       // chemin vers le fichier XPM
-// 	void	*img;        // image mlx
-// 	char	*addr;       // adresse mémoire de l’image
-// 	int		width;
-// 	int		height;
-// 	int		bpp;
-// 	int		line_len;
-// 	int		endian;
-// }	t_texture;
+typedef struct s_texture
+{
+	char	*path;       // chemin vers le fichier XPM
+	void	*img;        // image mlx
+	char	*addr;       // adresse mémoire de l’image
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_texture;
 
 typedef struct s_player
 {
@@ -125,10 +125,10 @@ typedef struct s_data
 	int			line_len;  // taille d’une ligne
 	int			endian;    // ordre des octets
 
-	// t_texture	north;
-	// t_texture	south;
-	// t_texture	east;
-	// t_texture	west;
+	t_texture	north;
+	t_texture	south;
+	t_texture	east;
+	t_texture	west;
 
 	t_color		floor;     // couleur du sol
 	t_color		ceiling;   // couleur du plafond
