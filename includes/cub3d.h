@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 11:56:18 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:49:04 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,16 +173,17 @@ int		close_window(t_data *data);
 /* ===========================
 **         PARSING API
 ** =========================== */
+void	check_map_closed(const t_map *map);
+char	**collect_raw_map(char **map_lines);
+void	normalize_map(char **raw, t_map *map);
+void	parse_colors(char **cfg, t_data *d);
+void	parse_textures(char **cfg, t_data *d);
+char	**read_all_lines(const char *path);
+int		split_config_and_map(char **lines, char ***cfg_out, char ***map_out);
+void	validate_chars_and_spawn(t_map *map, t_player *pl);
+
 int		parse_file(const char *path, t_data *d);
 void	die_parse(const char *msg, t_data *d);
 void	free_strarray(char **a);
-char	**read_all_lines(const char *path);
-int		split_config_and_map(char **lines, char ***cfg, char ***map);
-void	parse_textures(char **cfg, t_data *d);
-void	parse_colors(char **cfg, t_data *d);
-char	**collect_raw_map(char **map_lines);
-void	normalize_map(char **raw, t_map *map);
-void	validate_chars_and_spawn(t_map *map, t_player *pl);
-void	check_map_closed(const t_map *map);
 
-#endif /* CUB3D_H */
+#endif
