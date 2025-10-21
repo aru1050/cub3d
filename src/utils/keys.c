@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:04:24 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/20 15:38:05 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:06:51 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	key_release(int keycode, t_data *data)
 		data->player.right_rotate = 0;
 	return (0);
 }
+
 int	game_loop(t_data *data)
 {
 	if (data->player.key_up)
@@ -58,9 +59,9 @@ int	game_loop(t_data *data)
 	if (data->player.key_right)
 		player_move(D, &data->player);
 	if (data->player.left_rotate)
-		player_rotate(LEFT_ARROW, &data->player);
+		player_rotate_left(LEFT_ARROW, &data->player);
 	if (data->player.right_rotate)
-		player_rotate(RIGHT_ARROW, &data->player);
+		player_rotate_right(RIGHT_ARROW, &data->player);
 	render_frames(data);
 	return (0);
 }

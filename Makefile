@@ -18,6 +18,7 @@ SRCS    =	src/main.c \
 			src/parser/split_config_and_map.c \
 			src/parser/validate_chars_and_spawn.c \
 			src/raycasting/raycasting.c \
+			src/raycasting/init_ray.c \
 			src/utils/keys.c
 OBJS    = $(SRCS:.c=.o)
 

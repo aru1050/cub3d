@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 12:49:04 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/21 13:01:15 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,8 @@ void	render_frames(t_data *data);
 ** =========================== */
 void	init_player(t_player *player);
 void	player_move(int key, t_player *player);
-void	player_rotate(int key, t_player *player);
+void	player_rotate_left(int key, t_player *player);
+void	player_rotate_right(int key, t_player *player);
 
 /* ===========================
 **         GESTION CLAVIER

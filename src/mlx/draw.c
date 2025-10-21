@@ -6,22 +6,21 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:05:58 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/20 16:16:41 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:54:25 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_cub(t_data *data, char **argv)
+void	init_cub(t_data *data, char **argv)
 {
 	(void)argv;
-
-    data->mlx = mlx_init();
+	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "cub3d");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
-	data->addr = mlx_get_data_addr(data->img, &data->bpp, &data->line_len, &data->endian);
-	
-	static char *map_data[] = {
+	data->addr = mlx_get_data_addr
+		(data->img, &data->bpp, &data->line_len, &data->endian);
+	static char	*map_data[] = {
 		"11111111111111111111",
 		"10000010000000000001",
 		"10000101000000000001",
