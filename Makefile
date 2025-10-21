@@ -9,6 +9,14 @@ SRCS    =	src/main.c \
 			src/mlx/draw.c \
 			src/mlx/player.c \
 			src/mlx/textures.c \
+			src/parser/check_map_closed.c \
+			src/parser/map_collect.c \
+			src/parser/map_normalize.c \
+			src/parser/parse_color.c \
+			src/parser/parse_textures.c \
+			src/parser/read_all_lines.c \
+			src/parser/split_config_and_map.c \
+			src/parser/validate_chars_and_spawn.c \
 			src/raycasting/raycasting.c \
 			src/utils/keys.c
 OBJS    = $(SRCS:.c=.o)
