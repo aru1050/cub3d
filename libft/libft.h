@@ -6,14 +6,22 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:37:50 by athamilc          #+#    #+#             */
-/*   Updated: 2024/12/25 13:35:20 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:26:19 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000000
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stddef.h>
+# include <stdio.h>
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -49,5 +57,11 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+int		ft_isspace(int c);
+char	*get_next_line(int fd);
+char	*fill_line_buffer(int fd, char **stash);
+ssize_t	tread_line(int fd, char **stash, char **buffer);
+char	*read_line_buffer(int fd, char **stash);
+char	*set_line(char **stash);
 
 #endif
