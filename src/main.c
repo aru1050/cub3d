@@ -16,16 +16,10 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
-	(void)argc;
-	ft_memset(&data, 0, sizeof(data));
-	/* 
 	if (argc != 2)
-	{
-		printf("Invalid number of arguments.\n");
-		return (1);
-	}
-	parser_mlx(&data);
-	*/
+		die_parse("Error\nUsage: ./cub3D <map.cub>", NULL);
+	ft_memset(&data, 0, sizeof(t_data));
+	parse_file(argv[1], &data);
 	init_cub(&data, argv);
 	init_player(&data.player);
 	render_frames(&data);
@@ -34,6 +28,5 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_hook(data.win, 17, 0, close_window, &data);
 	mlx_loop(data.mlx);
-	/* free_mlx(&data); */
 	return (0);
 }

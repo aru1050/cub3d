@@ -9,6 +9,8 @@ SRCS    =	src/main.c \
 			src/mlx/draw.c \
 			src/mlx/player.c \
 			src/mlx/textures.c \
+			src/parser/parse_file.c \
+			src/parser/error_utils.c \
 			src/parser/check_map_closed.c \
 			src/parser/map_collect.c \
 			src/parser/map_normalize.c \
