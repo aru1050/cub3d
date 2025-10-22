@@ -1,0 +1,19 @@
+#include "cub3d.h"
+
+void	die_parse(const char *msg, t_data *d)
+{
+	(void)d;
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(1);
+}
+
+#include "cub3d.h"
+
+void	die_parse(const char *msg, t_data *d)
+{
+	(void)d;
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(1);
+}
