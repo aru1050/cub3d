@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:20:15 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/23 17:19:52 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/23 17:54:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(int argc, char **argv)
 		die_parse("Error\nUsage: ./cub3D <map.cub>", NULL);
 	ft_memset(&data, 0, sizeof(t_data));
 	parse_file(argv[1], &data);
-	// load_all_textures(&data);
 	init_cub(&data, argv);
+	load_all_textures(&data);
 	init_player(&data.player);
 	render_frames(&data);
 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
