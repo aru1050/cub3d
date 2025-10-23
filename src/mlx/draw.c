@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:05:58 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 12:54:25 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/23 11:46:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@ void	init_cub(t_data *data, char **argv)
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	data->addr = mlx_get_data_addr
 		(data->img, &data->bpp, &data->line_len, &data->endian);
-	static char	*map_data[] = {
-		"11111111111111111111",
-		"10000010000000000001",
-		"10000101000000000001",
-		"10100010000000000001",
-		"10000001000010000001",
-		"10000000000001000001",
-		"10000000000000000001",
-		"11111111111111111111",
-		NULL
-	};
-	data->map.grid = map_data;
-	data->map.width = 6;
-	data->map.height = 5;
 }
 
 static void	my_pixel_put(t_data *data, int x, int y, int color)
