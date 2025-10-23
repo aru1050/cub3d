@@ -3,28 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   init_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 13:04:55 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 13:05:10 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/23 18:24:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_ray(t_ray *ray, t_player *player, int x)
+void	init_ray(t_ray *ray, t_player *p, int x)
 {
-	ray->camera_x = 2 * x / (double)WIDTH - 1;
-	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
-	ray->map_x = (int)player->x;
-	ray->map_y = (int)player->y;
-	if (ray->dir_x == 0)
-		ray->delta_x = 1e30;
-	else
-		ray->delta_x = fabs(1 / ray->dir_x);
-	if (ray->dir_y == 0)
-		ray->delta_y = 1e30;
-	else
-		ray->delta_y = fabs(1 / ray->dir_y);
+	double	camera_x;
+
+	camera_x = 2 * x / (double)WIDTH - 1;
+	ray->dir_x = p->dir_x + p->plane_x * camera_x;
+	ray->dir_y = p->dir_y + p->plane_y * camera_x;
+	ray->map_x = (int)p->x;
+	ray->map_y = (int)p->y;
+	ray->delta_x = fabs(1 / ray->dir_x);
+	ray->delta_y = fabs(1 / ray->dir_y);
 }

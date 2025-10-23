@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/23 17:25:22 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/23 18:09:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	player_move(int keycode, t_player *p, t_map *map)
 	if (map->grid[(int)new_y][(int)p->x] != '1')
 		p->y = new_y;
 }
-
 
 void	player_rotate_left(int key, t_player *player)
 {

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/23 17:27:50 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/23 18:15:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 # define S              115
 # define RIGHT_ARROW    65363
 # define LEFT_ARROW     65361
-#define MOVE_SPEED		0.01
+# define MOVE_SPEED     0.01
 # define WIDTH          800
 # define HEIGHT         800
 # define TILE_SIZE      64
