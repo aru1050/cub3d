@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 13:01:15 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:27:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define S              115
 # define RIGHT_ARROW    65363
 # define LEFT_ARROW     65361
+#define MOVE_SPEED		0.01
 # define WIDTH          800
 # define HEIGHT         800
 # define TILE_SIZE      64
@@ -118,6 +119,12 @@ typedef struct s_ray
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	
+	t_texture	*tex;
+	double		wall_x;
+	int			tex_x;
+	double		step;
+	double		tex_pos;
 }	t_ray;
 
 typedef struct s_data
@@ -159,7 +166,7 @@ void	render_frames(t_data *data);
 **        PLAYER / MOUVEMENT
 ** =========================== */
 void	init_player(t_player *player);
-void	player_move(int key, t_player *player);
+void	player_move(int keycode, t_player *p, t_map *map);
 void	player_rotate_left(int key, t_player *player);
 void	player_rotate_right(int key, t_player *player);
 
@@ -186,5 +193,8 @@ void	validate_chars_and_spawn(t_map *map, t_player *pl);
 int		parse_file(const char *path, t_data *d);
 void	die_parse(const char *msg, t_data *d);
 void	free_strarray(char **a);
+
+void	load_texture(t_data *d, t_texture *tex);
+void	load_all_textures(t_data *d);
 
 #endif

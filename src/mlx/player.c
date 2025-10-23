@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 13:02:35 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:25:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,30 +22,40 @@ void	init_player(t_player *player)
 	player->plane_y = 0.66;
 }
 
-void	player_move(int key, t_player *player)
+void	player_move(int keycode, t_player *p, t_map *map)
 {
-	player->move_speed = 0.01;
-	if (key == A)
+	double	new_x;
+	double	new_y;
+
+	new_x = p->x;
+	new_y = p->y;
+
+	if (keycode == W)
 	{
-		player->x -= player->plane_x * player->move_speed;
-		player->y -= player->plane_y * player->move_speed;
+		new_x += p->dir_x * MOVE_SPEED;
+		new_y += p->dir_y * MOVE_SPEED;
 	}
-	if (key == D)
+	if (keycode == S)
 	{
-		player->x += player->plane_x * player->move_speed;
-		player->y += player->plane_y * player->move_speed;
+		new_x -= p->dir_x * MOVE_SPEED;
+		new_y -= p->dir_y * MOVE_SPEED;
 	}
-	if (key == W)
+	if (keycode == A)
 	{
-		player->x += player->dir_x * player->move_speed;
-		player->y += player->dir_y * player->move_speed;
+		new_x -= p->plane_x * MOVE_SPEED;
+		new_y -= p->plane_y * MOVE_SPEED;
 	}
-	if (key == S)
+	if (keycode == D)
 	{
-		player->x -= player->dir_x * player->move_speed;
-		player->y -= player->dir_y * player->move_speed;
+		new_x += p->plane_x * MOVE_SPEED;
+		new_y += p->plane_y * MOVE_SPEED;
 	}
+	if (map->grid[(int)p->y][(int)new_x] != '1')
+		p->x = new_x;
+	if (map->grid[(int)new_y][(int)p->x] != '1')
+		p->y = new_y;
 }
+
 
 void	player_rotate_left(int key, t_player *player)
 {

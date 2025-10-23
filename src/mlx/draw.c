@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:05:58 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/23 11:46:37 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/23 16:59:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	my_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	render_frame(t_data *data)
+void	render_background(t_data *data)
 {
 	int	x;
 	int	y;

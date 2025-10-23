@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:04:24 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 13:06:51 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/23 17:20:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int	key_release(int keycode, t_data *data)
 int	game_loop(t_data *data)
 {
 	if (data->player.key_up)
-		player_move(W, &data->player);
+		player_move(W, &data->player, &data->map);
 	if (data->player.key_down)
-		player_move(S, &data->player);
+		player_move(S, &data->player, &data->map);
 	if (data->player.key_left)
-		player_move(A, &data->player);
+		player_move(A, &data->player, &data->map);
 	if (data->player.key_right)
-		player_move(D, &data->player);
+		player_move(D, &data->player, &data->map);
 	if (data->player.left_rotate)
 		player_rotate_left(LEFT_ARROW, &data->player);
 	if (data->player.right_rotate)
