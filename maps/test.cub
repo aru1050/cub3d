@@ -1,0 +1,14 @@
+NO ./textures/brick_red.xpm
+SO ./textures/concrete_light.xpm
+WE ./textures/wood_planks.xpm
+EA ./textures/stone_block.xpm
+
+F 40,80,150
+C 135,206,235
+
+111111111111
+100000000001
+100001110001
+10N001000001
+100001000001
+111111111111

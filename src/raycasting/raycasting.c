@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:01:50 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/23 18:29:02 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/30 14:35:40 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,31 +75,31 @@ static void	calc_wall(t_ray *r, t_player *p)
 		r->draw_end = HEIGHT - 1;
 }
 
-static void	draw_wall(t_data *data, int x, t_ray *r)
-{
-	int		y;
-	int		color;
-	char	*dst;
+// static void	draw_wall(t_data *data, int x, t_ray *r)
+// {
+// 	int		y;
+// 	int		color;
+// 	char	*dst;
 
-	y = 0;
-	while (y < HEIGHT)
-	{
-		if (y < r->draw_start)
-			color = 0x87CEEB;
-		else if (y > r->draw_end)
-			color = 0xA0522D;
-		else
-		{
-			if (r->side == 1)
-				color = 0xFF0000;
-			else
-				color = 0x880000;
-		}
-		dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-		*(unsigned int *)dst = color;
-		y++;
-	}
-}
+// 	y = 0;
+// 	while (y < HEIGHT)
+// 	{
+// 		if (y < r->draw_start)
+// 			color = 0x87CEEB;
+// 		else if (y > r->draw_end)
+// 			color = 0xA0522D;
+// 		else
+// 		{
+// 			if (r->side == 1)
+// 				color = 0xFF0000;
+// 			else
+// 				color = 0x880000;
+// 		}
+// 		dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
+// 		*(unsigned int *)dst = color;
+// 		y++;
+// 	}
+// }
 
 void	render_frames(t_data *data)
 {
@@ -113,7 +113,7 @@ void	render_frames(t_data *data)
 		init_dda(&ray, &data->player);
 		perform_dda(&ray, &data->map);
 		calc_wall(&ray, &data->player);
-		draw_wall(data, x, &ray);
+		draw_walla(data, x, &ray);
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);

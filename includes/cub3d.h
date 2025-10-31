@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/23 18:15:51 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/30 13:00:12 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 ** =========================== */
 # include <stdlib.h>
 # include <unistd.h>
+# include <float.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <math.h>
@@ -115,11 +116,11 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		side;
-	double	dist;
+	double	dist;         /* distance perpendiculaire utilisée pour la hauteur */
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
-	
+
 	t_texture	*tex;
 	double		wall_x;
 	int			tex_x;
@@ -136,15 +137,19 @@ typedef struct s_data
 	int			bpp;
 	int			line_len;
 	int			endian;
+
 	t_texture	north;
 	t_texture	south;
 	t_texture	east;
 	t_texture	west;
+
 	t_color		floor;
 	t_color		ceiling;
+
 	t_map		map;
 	t_player	player;
 	t_keys		keys;
+
 	double		fov;
 	int			tile_size;
 	int			screen_width;
@@ -155,12 +160,16 @@ typedef struct s_data
 **        INITIALISATION
 ** =========================== */
 void	init_cub(t_data *config, char **argv);
+void	render_background(t_data *d);
+void	draw_walla(t_data *d, int x, t_ray *r);
+
 
 /* ===========================
 **           RAYCASTING
 ** =========================== */
 void	init_ray(t_ray *ray, t_player *player, int x);
 void	render_frames(t_data *data);
+void	rendering_frames(t_data *d);
 
 /* ===========================
 **        PLAYER / MOUVEMENT
@@ -189,12 +198,16 @@ void	parse_textures(char **cfg, t_data *d);
 char	**read_all_lines(const char *path);
 int		split_config_and_map(char **lines, char ***cfg_out, char ***map_out);
 void	validate_chars_and_spawn(t_map *map, t_player *pl);
-
 int		parse_file(const char *path, t_data *d);
 void	die_parse(const char *msg, t_data *d);
 void	free_strarray(char **a);
 
-void	load_texture(t_data *d, t_texture *tex);
-void	load_all_textures(t_data *d);
+/* ===========================
+**            TEXTURES
+** =========================== */
+void		load_texture(t_data *d, t_texture *tex);
+void		load_all_textures(t_data *d);
+void		destroy_all_textures(t_data *d);
+t_texture	*pick_wall_tex(t_data *d, t_ray *r);
 
 #endif

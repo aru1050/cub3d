@@ -68,17 +68,14 @@ int	game_loop(t_data *data)
 
 int	close_window(t_data *data)
 {
+	destroy_all_textures(data);
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	if (data->mlx)
-	{
-		mlx_loop_end(data->mlx);
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-	}
-	printf("Window closed\n");
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 	exit(0);
 	return (0);
 }
+

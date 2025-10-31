@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_file.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/30 13:17:54 by athamilc          #+#    #+#             */
+/*   Updated: 2025/10/30 13:19:13 by athamilc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	parse_file(const char *path, t_data *d)
@@ -24,5 +36,5 @@ int	parse_file(const char *path, t_data *d)
 	free_strarray(cfg);
 	free_strarray(map_lines);
 	free_strarray(raw);
-	return (0);
+	return (1);
 }
