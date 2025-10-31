@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/23 18:09:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/10/31 15:03:35 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,30 @@ void	init_player(t_player *player)
 	player->plane_y = 0.66;
 }
 
+static void	move_direction(int keycode, t_player *p, double *nx, double *ny)
+{
+	if (keycode == W)
+	{
+		*nx += p->dir_x * MOVE_SPEED;
+		*ny += p->dir_y * MOVE_SPEED;
+	}
+	else if (keycode == S)
+	{
+		*nx -= p->dir_x * MOVE_SPEED;
+		*ny -= p->dir_y * MOVE_SPEED;
+	}
+	else if (keycode == A)
+	{
+		*nx -= p->plane_x * MOVE_SPEED;
+		*ny -= p->plane_y * MOVE_SPEED;
+	}
+	else if (keycode == D)
+	{
+		*nx += p->plane_x * MOVE_SPEED;
+		*ny += p->plane_y * MOVE_SPEED;
+	}
+}
+
 void	player_move(int keycode, t_player *p, t_map *map)
 {
 	double	new_x;
@@ -29,27 +53,7 @@ void	player_move(int keycode, t_player *p, t_map *map)
 
 	new_x = p->x;
 	new_y = p->y;
-
-	if (keycode == W)
-	{
-		new_x += p->dir_x * MOVE_SPEED;
-		new_y += p->dir_y * MOVE_SPEED;
-	}
-	if (keycode == S)
-	{
-		new_x -= p->dir_x * MOVE_SPEED;
-		new_y -= p->dir_y * MOVE_SPEED;
-	}
-	if (keycode == A)
-	{
-		new_x -= p->plane_x * MOVE_SPEED;
-		new_y -= p->plane_y * MOVE_SPEED;
-	}
-	if (keycode == D)
-	{
-		new_x += p->plane_x * MOVE_SPEED;
-		new_y += p->plane_y * MOVE_SPEED;
-	}
+	move_direction(keycode, p, &new_x, &new_y);
 	if (map->grid[(int)p->y][(int)new_x] != '1')
 		p->x = new_x;
 	if (map->grid[(int)new_y][(int)p->x] != '1')

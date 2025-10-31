@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:01:50 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/30 14:35:40 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/10/31 15:07:00 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,32 +74,6 @@ static void	calc_wall(t_ray *r, t_player *p)
 	if (r->draw_end >= HEIGHT)
 		r->draw_end = HEIGHT - 1;
 }
-
-// static void	draw_wall(t_data *data, int x, t_ray *r)
-// {
-// 	int		y;
-// 	int		color;
-// 	char	*dst;
-
-// 	y = 0;
-// 	while (y < HEIGHT)
-// 	{
-// 		if (y < r->draw_start)
-// 			color = 0x87CEEB;
-// 		else if (y > r->draw_end)
-// 			color = 0xA0522D;
-// 		else
-// 		{
-// 			if (r->side == 1)
-// 				color = 0xFF0000;
-// 			else
-// 				color = 0x880000;
-// 		}
-// 		dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-// 		*(unsigned int *)dst = color;
-// 		y++;
-// 	}
-// }
 
 void	render_frames(t_data *data)
 {

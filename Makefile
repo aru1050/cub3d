@@ -7,6 +7,7 @@ LIBFT_DIR = libft
 
 SRCS    =	src/main.c \
 			src/mlx/draw.c \
+			src/mlx/init_and_utils.c \
 			src/mlx/player.c \
 			src/mlx/textures.c \
 			src/parser/parse_file.c \
