@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:05:58 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 14:59:53 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:35:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	draw_ceiling_floor(t_data *d, int x, int start, int end)
+void	draw_ceiling_floor(t_data *d, int x, int start, int end)
 {
 	int	y;
 	int	ceil_color;
@@ -23,56 +23,52 @@ static void	draw_ceiling_floor(t_data *d, int x, int start, int end)
 	y = 0;
 	while (y < start)
 		my_pixel_put(d, x, y++, ceil_color);
-	y = end + 1;
+	y = end;
 	while (y < HEIGHT)
 		my_pixel_put(d, x, y++, floor_color);
 }
 
-static void	draw_tex_pixel(t_data *d, t_texture *tex, t_ray *r, double *texpos)
+static void	draw_tex_pixel(t_data *d, t_texture *tex, int x, int y, int tex_x, int tex_y, int side)
 {
-	int		texy;
 	char	*px;
 	int		color;
 
-	texy = (int)*texpos;
-	if (texy < 0)
-		texy = 0;
-	if (texy >= tex->height)
-		texy = tex->height - 1;
-	*texpos += (1.0 * tex->height / r->line_h);
-	px = tex->addr + texy * tex->line_len + r->tex_x * (tex->bpp / 8);
+	if (tex_x < 0)
+		tex_x = 0;
+	if (tex_x >= tex->width)
+		tex_x = tex->width - 1;
+	if (tex_y < 0)
+		tex_y = 0;
+	if (tex_y >= tex->height)
+		tex_y = tex->height - 1;
+	px = tex->addr + tex_y * tex->line_len + tex_x * (tex->bpp / 8);
 	color = *(int *)px;
-	if (r->side == 1)
-		color = shade_color(color, 0.75);
-	my_pixel_put(d, r->x, r->y, color);
+	if (side == 1)
+		color = shade_color(color, 0.85);
+	my_pixel_put(d, x, y, color);
 }
 
 static void	draw_wall_texture(t_data *d, t_texture *tex, t_ray *r, int x)
 {
-	int		start;
-	int		end;
+	int		y;
+	double	step;
 	double	texpos;
+	int		tex_y;
 
-	r->line_h = (int)(HEIGHT / r->dist);
-	start = -r->line_h / 2 + HEIGHT / 2;
-	end = r->line_h / 2 + HEIGHT / 2;
-	if (start < 0)
-		start = 0;
-	if (end >= HEIGHT)
-		end = HEIGHT - 1;
-	texpos = (start - HEIGHT / 2 + r->line_h / 2)
-		* (1.0 * tex->height / r->line_h);
-	r->x = x;
-	r->y = start;
-	while (r->y <= end)
+	step = 1.0 * tex->height / r->line_height;
+	texpos = (r->draw_start - HEIGHT / 2 + r->line_height / 2) * step;
+	draw_ceiling_floor(d, x, r->draw_start, r->draw_end);
+	y = r->draw_start;
+	while (y < r->draw_end)
 	{
-		draw_tex_pixel(d, tex, r, &texpos);
-		r->y++;
+		tex_y = (int)texpos & (tex->height - 1);
+		texpos += step;
+		draw_tex_pixel(d, tex, x, y, r->tex_x, tex_y, r->side);
+		y++;
 	}
-	draw_ceiling_floor(d, x, start, end);
 }
 
-void	draw_walla(t_data *d, int x, t_ray *r)
+void	draw_wall(t_data *d, int x, t_ray *r)
 {
 	t_texture	*tex;
 	double		wallx;

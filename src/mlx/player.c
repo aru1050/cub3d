@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 15:03:35 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:41:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,52 +54,23 @@ void	player_move(int keycode, t_player *p, t_map *map)
 	new_x = p->x;
 	new_y = p->y;
 	move_direction(keycode, p, &new_x, &new_y);
-	if (map->grid[(int)p->y][(int)new_x] != '1')
+	if ((int)new_x >= 0 && (int)new_x < map->width
+		&& map->grid[(int)p->y][(int)new_x] != '1')
 		p->x = new_x;
-	if (map->grid[(int)new_y][(int)p->x] != '1')
+	if ((int)new_y >= 0 && (int)new_y < map->height
+		&& map->grid[(int)new_y][(int)p->x] != '1')
 		p->y = new_y;
 }
 
-void	player_rotate_left(int key, t_player *player)
+void	player_rotate(t_player *p, double rot)
 {
-	double	rot_speed;
 	double	old_dir_x;
 	double	old_plane_x;
 
-	rot_speed = 0.01;
-	if (key == LEFT_ARROW)
-	{
-		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(rot_speed)
-			- player->dir_y * sin(rot_speed);
-		player->dir_y = old_dir_x * sin(rot_speed)
-			+ player->dir_y * cos(rot_speed);
-		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(rot_speed)
-			- player->plane_y * sin(rot_speed);
-		player->plane_y = old_plane_x * sin(rot_speed)
-			+ player->plane_y * cos(rot_speed);
-	}
-}
-
-void	player_rotate_right(int key, t_player *player)
-{
-	double	rot_speed;
-	double	old_dir_x;
-	double	old_plane_x;
-
-	rot_speed = 0.01;
-	if (key == RIGHT_ARROW)
-	{
-		old_dir_x = player->dir_x;
-		player->dir_x = player->dir_x * cos(-rot_speed)
-			- player->dir_y * sin(-rot_speed);
-		player->dir_y = old_dir_x * sin(-rot_speed)
-			+ player->dir_y * cos(-rot_speed);
-		old_plane_x = player->plane_x;
-		player->plane_x = player->plane_x * cos(-rot_speed)
-			- player->plane_y * sin(-rot_speed);
-		player->plane_y = old_plane_x * sin(-rot_speed)
-			+ player->plane_y * cos(-rot_speed);
-	}
+	old_dir_x = p->dir_x;
+	p->dir_x = p->dir_x * cos(rot) - p->dir_y * sin(rot);
+	p->dir_y = old_dir_x * sin(rot) + p->dir_y * cos(rot);
+	old_plane_x = p->plane_x;
+	p->plane_x = p->plane_x * cos(rot) - p->plane_y * sin(rot);
+	p->plane_y = old_plane_x * sin(rot) + p->plane_y * cos(rot);
 }

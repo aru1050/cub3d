@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:04:24 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 15:11:55 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:41:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ int	key_press(int keycode, t_data *data)
 {
 	if (keycode == ESC)
 		close_window(data);
-	if (keycode == W)
+	else if (keycode == W)
 		data->player.key_up = 1;
-	if (keycode == S)
+	else if (keycode == S)
 		data->player.key_down = 1;
-	if (keycode == A)
+	else if (keycode == A)
 		data->player.key_left = 1;
-	if (keycode == D)
+	else if (keycode == D)
 		data->player.key_right = 1;
-	if (keycode == LEFT_ARROW)
+	else if (keycode == LEFT_ARROW)
 		data->player.left_rotate = 1;
-	if (keycode == RIGHT_ARROW)
+	else if (keycode == RIGHT_ARROW)
 		data->player.right_rotate = 1;
 	return (0);
 }
@@ -35,15 +35,15 @@ int	key_release(int keycode, t_data *data)
 {
 	if (keycode == W)
 		data->player.key_up = 0;
-	if (keycode == S)
+	else if (keycode == S)
 		data->player.key_down = 0;
-	if (keycode == A)
+	else if (keycode == A)
 		data->player.key_left = 0;
-	if (keycode == D)
+	else if (keycode == D)
 		data->player.key_right = 0;
-	if (keycode == LEFT_ARROW)
+	else if (keycode == LEFT_ARROW)
 		data->player.left_rotate = 0;
-	if (keycode == RIGHT_ARROW)
+	else if (keycode == RIGHT_ARROW)
 		data->player.right_rotate = 0;
 	return (0);
 }
@@ -59,22 +59,28 @@ int	game_loop(t_data *data)
 	if (data->player.key_right)
 		player_move(D, &data->player, &data->map);
 	if (data->player.left_rotate)
-		player_rotate_left(LEFT_ARROW, &data->player);
+		player_rotate(&data->player, 0.05);
 	if (data->player.right_rotate)
-		player_rotate_right(RIGHT_ARROW, &data->player);
+		player_rotate(&data->player, -0.05);
 	render_frames(data);
 	return (0);
 }
 
 int	close_window(t_data *data)
 {
+	if (!data || data->is_closed)
+		return (0);
+	data->is_closed = 1;
 	destroy_all_textures(data);
 	if (data->img)
 		mlx_destroy_image(data->mlx, data->img);
 	if (data->win)
 		mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	free(data->mlx);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 	exit(0);
 	return (0);
 }

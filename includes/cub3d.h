@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 15:25:41 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:44:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define S              115
 # define RIGHT_ARROW    65363
 # define LEFT_ARROW     65361
-# define MOVE_SPEED     0.01
+# define MOVE_SPEED     0.03
 # define WIDTH          800
 # define HEIGHT         800
 # define TILE_SIZE      64
@@ -142,9 +142,10 @@ typedef struct s_data
 	int			tile_size;
 	int			screen_width;
 	int			screen_height;
+	int			is_closed;
 }	t_data;
 
-void		draw_walla(t_data *d, int x, t_ray *r);
+void		draw_wall(t_data *d, int x, t_ray *r);
 
 void		init_cub(t_data *config, char **argv);
 void		my_pixel_put(t_data *d, int x, int y, int color);
@@ -153,8 +154,7 @@ void		render_background(t_data *d);
 
 void		init_player(t_player *player);
 void		player_move(int keycode, t_player *p, t_map *map);
-void		player_rotate_left(int key, t_player *player);
-void		player_rotate_right(int key, t_player *player);
+void		player_rotate(t_player *p, double rot);
 
 void		load_texture(t_data *d, t_texture *tex);
 void		load_all_textures(t_data *d);
@@ -164,8 +164,6 @@ t_texture	*pick_wall_tex(t_data *d, t_ray *r);
 void		init_ray(t_ray *ray, t_player *player, int x);
 
 void		render_frames(t_data *data);
-
-void		rendering_frames(t_data *d);
 
 int			key_press(int keycode, t_data *data);
 int			key_release(int keycode, t_data *data);

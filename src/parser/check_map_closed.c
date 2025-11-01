@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map_closed.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:05:55 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 17:53:11 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/01 00:11:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,16 @@ static void	fill_borders(char **v, const t_map *map)
 	}
 }
 
+static void	free_copy(char **v, int h)
+{
+	int	y;
+
+	y = 0;
+	while (y < h)
+		free(v[y++]);
+	free(v);
+}
+
 static void	check_leaks(char **v, const t_map *map)
 {
 	int	x;
@@ -118,16 +128,17 @@ static void	check_leaks(char **v, const t_map *map)
 		x = 0;
 		while (x < map->width)
 		{
-			if (map->grid[y][x] == '0' && (v[y][x] == '#'
-					|| v[y][x + 1] == '#' || v[y][x - 1] == '#'
-					|| v[y + 1][x] == '#' || v[y - 1][x] == '#'))
+			if (map->grid[y][x] == '0' && (y == 0 || x == 0
+				|| y == map->height - 1 || x == map->width - 1
+				|| v[y][x] == '#' || v[y][x + 1] == '#'
+				|| v[y][x - 1] == '#' || v[y + 1][x] == '#'
+				|| v[y - 1][x] == '#'))
 				die_parse("Error\nMap not closed", NULL);
 			x++;
 		}
-		free(v[y]);
 		y++;
 	}
-	free(v);
+	free_copy(v, map->height);
 }
 
 void	check_map_closed(const t_map *map)

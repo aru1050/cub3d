@@ -3,45 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:01:50 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 15:07:00 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/01 17:26:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	init_dda(t_ray *r, t_player *p)
-{
-	if (r->dir_x < 0)
-	{
-		r->step_x = -1;
-		r->side_x = (p->x - r->map_x) * r->delta_x;
-	}
-	else
-	{
-		r->step_x = 1;
-		r->side_x = (r->map_x + 1.0 - p->x) * r->delta_x;
-	}
-	if (r->dir_y < 0)
-	{
-		r->step_y = -1;
-		r->side_y = (p->y - r->map_y) * r->delta_y;
-	}
-	else
-	{
-		r->step_y = 1;
-		r->side_y = (r->map_y + 1.0 - p->y) * r->delta_y;
-	}
-}
 
 static void	perform_dda(t_ray *r, t_map *map)
 {
 	int	hit;
 
 	hit = 0;
-	while (hit == 0)
+	while (!hit)
 	{
 		if (r->side_x < r->side_y)
 		{
@@ -55,6 +31,9 @@ static void	perform_dda(t_ray *r, t_map *map)
 			r->map_y += r->step_y;
 			r->side = 1;
 		}
+		if (r->map_x < 0 || r->map_y < 0
+			|| r->map_y >= map->height || r->map_x >= map->width)
+			break;
 		if (map->grid[r->map_y][r->map_x] == '1')
 			hit = 1;
 	}
@@ -66,7 +45,11 @@ static void	calc_wall(t_ray *r, t_player *p)
 		r->dist = (r->map_x - p->x + (1 - r->step_x) / 2) / r->dir_x;
 	else
 		r->dist = (r->map_y - p->y + (1 - r->step_y) / 2) / r->dir_y;
+	if (r->dist <= 0.0001)
+		r->dist = 0.0001;
 	r->line_height = (int)(HEIGHT / r->dist);
+	if (r->line_height > HEIGHT * 4) // limite anti-explosion
+		r->line_height = HEIGHT * 4;
 	r->draw_start = -r->line_height / 2 + HEIGHT / 2;
 	if (r->draw_start < 0)
 		r->draw_start = 0;
@@ -80,14 +63,14 @@ void	render_frames(t_data *data)
 	int		x;
 	t_ray	ray;
 
+	render_background(data);
 	x = 0;
 	while (x < WIDTH)
 	{
-		init_ray(&ray, &data->player, x);
-		init_dda(&ray, &data->player);
-		perform_dda(&ray, &data->map);
-		calc_wall(&ray, &data->player);
-		draw_walla(data, x, &ray);
+		init_ray(&ray, &data->player, x);   // calcul direction du rayon
+		perform_dda(&ray, &data->map);      // avance jusqu’au mur
+		calc_wall(&ray, &data->player);     // calcule la distance
+		draw_wall(data, x, &ray);          // dessine la colonne
 		x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
