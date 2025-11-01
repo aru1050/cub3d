@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:05:58 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 17:35:13 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/01 18:16:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,32 +28,34 @@ void	draw_ceiling_floor(t_data *d, int x, int start, int end)
 		my_pixel_put(d, x, y++, floor_color);
 }
 
-static void	draw_tex_pixel(t_data *d, t_texture *tex, int x, int y, int tex_x, int tex_y, int side)
+static void	draw_tex_pixel(t_data *d, t_texinfo *info, int x, int y)
 {
 	char	*px;
 	int		color;
 
-	if (tex_x < 0)
-		tex_x = 0;
-	if (tex_x >= tex->width)
-		tex_x = tex->width - 1;
-	if (tex_y < 0)
-		tex_y = 0;
-	if (tex_y >= tex->height)
-		tex_y = tex->height - 1;
-	px = tex->addr + tex_y * tex->line_len + tex_x * (tex->bpp / 8);
+	if (info->tex_x < 0)
+		info->tex_x = 0;
+	if (info->tex_x >= info->tex->width)
+		info->tex_x = info->tex->width - 1;
+	if (info->tex_y < 0)
+		info->tex_y = 0;
+	if (info->tex_y >= info->tex->height)
+		info->tex_y = info->tex->height - 1;
+	px = info->tex->addr
+		+ info->tex_y * info->tex->line_len
+		+ info->tex_x * (info->tex->bpp / 8);
 	color = *(int *)px;
-	if (side == 1)
+	if (info->side == 1)
 		color = shade_color(color, 0.85);
 	my_pixel_put(d, x, y, color);
 }
 
 static void	draw_wall_texture(t_data *d, t_texture *tex, t_ray *r, int x)
 {
-	int		y;
-	double	step;
-	double	texpos;
-	int		tex_y;
+	int			y;
+	double		step;
+	double		texpos;
+	t_texinfo	info;
 
 	step = 1.0 * tex->height / r->line_height;
 	texpos = (r->draw_start - HEIGHT / 2 + r->line_height / 2) * step;
@@ -61,9 +63,12 @@ static void	draw_wall_texture(t_data *d, t_texture *tex, t_ray *r, int x)
 	y = r->draw_start;
 	while (y < r->draw_end)
 	{
-		tex_y = (int)texpos & (tex->height - 1);
+		info.tex = tex;
+		info.side = r->side;
+		info.tex_x = r->tex_x;
+		info.tex_y = (int)texpos & (tex->height - 1);
 		texpos += step;
-		draw_tex_pixel(d, tex, x, y, r->tex_x, tex_y, r->side);
+		draw_tex_pixel(d, &info, x, y);
 		y++;
 	}
 }

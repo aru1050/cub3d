@@ -6,21 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 17:50:08 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/01 18:06:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	init_player(t_player *player)
-{
-	player->x = 2.5;
-	player->y = 2.5;
-	player->dir_x = -1.0;
-	player->dir_y = 0.0;
-	player->plane_x = 0.0;
-	player->plane_y = 0.66;
-}
 
 static void	move_direction(int keycode, t_player *p, double *nx, double *ny)
 {

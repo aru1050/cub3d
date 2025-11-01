@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:04:24 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 17:41:23 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/01 18:05:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int	game_loop(t_data *data)
 	if (data->player.key_right)
 		player_move(D, &data->player, &data->map);
 	if (data->player.left_rotate)
-		player_rotate(&data->player, 0.05);
-	if (data->player.right_rotate)
 		player_rotate(&data->player, -0.05);
+	if (data->player.right_rotate)
+		player_rotate(&data->player, 0.05);
 	render_frames(data);
 	return (0);
 }

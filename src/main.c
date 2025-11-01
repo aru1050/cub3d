@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:20:15 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 17:05:33 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/01 18:07:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int argc, char **argv)
 	// parse_file(argv[1], &data);
 	init_cub(&data, argv);
 	// load_all_textures(&data);
-	init_player(&data.player);
 	render_frames(&data);
 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
 	mlx_hook(data.win, 3, 1L << 1, key_release, &data);

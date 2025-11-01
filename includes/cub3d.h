@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 17:44:17 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/01 18:14:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ typedef struct s_keys
 	int			right;
 }	t_keys;
 
+typedef struct s_texinfo
+{
+	t_texture	*tex;
+	int			side;
+	int			tex_x;
+	int			tex_y;
+}	t_texinfo;
+
 typedef struct s_ray
 {
 	double		camera_x;
@@ -152,9 +160,8 @@ void		my_pixel_put(t_data *d, int x, int y, int color);
 int			shade_color(int color, double f);
 void		render_background(t_data *d);
 
-void		init_player(t_player *player);
 void		player_move(int keycode, t_player *p, t_map *map);
-void		player_rotate(t_player *p, double rot);
+void		player_rotate(t_player *player, double angle);
 
 void		load_texture(t_data *d, t_texture *tex);
 void		load_all_textures(t_data *d);
