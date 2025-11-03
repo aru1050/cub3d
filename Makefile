@@ -22,7 +22,8 @@ SRCS    =	src/main.c \
 			src/parser/validate_chars_and_spawn.c \
 			src/raycasting/raycasting.c \
 			src/raycasting/init_ray.c \
-			src/utils/keys.c
+			src/utils/keys.c \
+			src/utils/close_window.c 
 OBJS    = $(SRCS:.c=.o)
 
 CC      = cc
