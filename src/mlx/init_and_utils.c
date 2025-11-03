@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:52:34 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 14:52:38 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:19:38 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,6 @@ void	init_cub(t_data *d, char **argv)
 		die_parse("Error\nmlx_get_data_addr failed", d);
 }
 
-void	my_pixel_put(t_data *d, int x, int y, int color)
-{
-	char	*dst;
-
-	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
-		return ;
-	dst = d->addr + (y * d->line_len + x * (d->bpp / 8));
-	*(unsigned int *)dst = (unsigned int)color;
-}
-
 int	shade_color(int color, double f)
 {
 	int	r;
@@ -53,6 +43,16 @@ int	shade_color(int color, double f)
 	g = ((color >> 8) & 0xFF) * f;
 	b = (color & 0xFF) * f;
 	return (r << 16 | g << 8 | b);
+}
+
+void	my_pixel_put(t_data *d, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= WIDTH || y < 0 || y >= HEIGHT)
+		return ;
+	dst = d->addr + (y * d->line_len + x * (d->bpp / 8));
+	*(unsigned int *)dst = (unsigned int)color;
 }
 
 void	render_background(t_data *d)

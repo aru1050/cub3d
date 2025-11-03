@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:03 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 14:17:32 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/03 12:17:27 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,4 @@ void	destroy_all_textures(t_data *d)
 	d->south.img = NULL;
 	d->west.img = NULL;
 	d->east.img = NULL;
-}
-
-t_texture	*pick_wall_tex(t_data *d, t_ray *r)
-{
-	if (r->side == 0)
-	{
-		if (r->dir_x > 0)
-			return (&d->east);
-		else
-			return (&d->west);
-	}
-	else
-	{
-		if (r->dir_y > 0)
-			return (&d->south);
-		else
-			return (&d->north);
-	}
 }

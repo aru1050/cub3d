@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:05:58 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 18:16:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/03 12:18:43 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	draw_ceiling_floor(t_data *d, int x, int start, int end)
-{
-	int	y;
-	int	ceil_color;
-	int	floor_color;
-
-	ceil_color = (d->ceiling.r << 16) | (d->ceiling.g << 8) | d->ceiling.b;
-	floor_color = (d->floor.r << 16) | (d->floor.g << 8) | d->floor.b;
-	y = 0;
-	while (y < start)
-		my_pixel_put(d, x, y++, ceil_color);
-	y = end;
-	while (y < HEIGHT)
-		my_pixel_put(d, x, y++, floor_color);
-}
 
 static void	draw_tex_pixel(t_data *d, t_texinfo *info, int x, int y)
 {
@@ -50,6 +34,22 @@ static void	draw_tex_pixel(t_data *d, t_texinfo *info, int x, int y)
 	my_pixel_put(d, x, y, color);
 }
 
+void	draw_ceiling_floor(t_data *d, int x, int start, int end)
+{
+	int	y;
+	int	ceil_color;
+	int	floor_color;
+
+	ceil_color = (d->ceiling.r << 16) | (d->ceiling.g << 8) | d->ceiling.b;
+	floor_color = (d->floor.r << 16) | (d->floor.g << 8) | d->floor.b;
+	y = 0;
+	while (y < start)
+		my_pixel_put(d, x, y++, ceil_color);
+	y = end;
+	while (y < HEIGHT)
+		my_pixel_put(d, x, y++, floor_color);
+}
+
 static void	draw_wall_texture(t_data *d, t_texture *tex, t_ray *r, int x)
 {
 	int			y;
@@ -70,6 +70,24 @@ static void	draw_wall_texture(t_data *d, t_texture *tex, t_ray *r, int x)
 		texpos += step;
 		draw_tex_pixel(d, &info, x, y);
 		y++;
+	}
+}
+
+t_texture	*pick_wall_tex(t_data *d, t_ray *r)
+{
+	if (r->side == 0)
+	{
+		if (r->dir_x > 0)
+			return (&d->east);
+		else
+			return (&d->west);
+	}
+	else
+	{
+		if (r->dir_y > 0)
+			return (&d->south);
+		else
+			return (&d->north);
 	}
 }
 
