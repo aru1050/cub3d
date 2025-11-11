@@ -12,31 +12,57 @@
 
 #include "cub3d.h"
 
-static char	*dup_after_id(char *line)
-{
-	int	i;
+#include "cub3d.h"
 
-	i = 0;
-	while (line[i] && !ft_isspace((unsigned char)line[i]))
-		i++;
-	while (line[i] && ft_isspace((unsigned char)line[i]))
-		i++;
-	return (ft_strtrim(line + i, " \n"));
+static char	*skip_spaces(char *s)
+{
+	while (*s && ft_isspace((unsigned char)*s))
+		s++;
+	return (s);
 }
 
-static void	set_texture_path(char **slot, char *line)
+static void	set_texture(char **dst, char *s, t_data *d)
 {
-	if (*slot)
-	{
-		printf("Error\nDuplicate texture identifier\n");
-		exit(1);
-	}
-	*slot = dup_after_id(line);
-	if (!*slot || **slot == '\0')
-	{
-		printf("Error\nEmpty texture path\n");
-		exit(1);
-	}
+	char	*path;
+	int		len;
+
+	if (*dst)
+		die_parse("Error\nDuplicate texture identifier", d);
+	s = skip_spaces(s);
+	if (!*s)
+		die_parse("Error\nMissing texture path", d);
+	len = ft_strlen(s);
+	while (len > 0 && ft_isspace((unsigned char)s[len - 1]))
+		len--;
+	if (len <= 0)
+		die_parse("Error\nMissing texture path", d);
+	path = ft_substr(s, 0, len);
+	if (!path)
+		die_parse("Error\nMalloc failed", d);
+	*dst = path;
+}
+
+static void	parse_texture_line(char *line, t_data *d)
+{
+	char	*s;
+
+	s = skip_spaces(line);
+	if (*s == 'N' && s[1] == 'O' && ft_isspace((unsigned char)s[2]))
+		set_texture(&d->north.path, s + 3, d);
+	else if (*s == 'S' && s[1] == 'O'
+		&& ft_isspace((unsigned char)s[2]))
+		set_texture(&d->south.path, s + 3, d);
+	else if (*s == 'W' && s[1] == 'E'
+		&& ft_isspace((unsigned char)s[2]))
+		set_texture(&d->west.path, s + 3, d);
+	else if (*s == 'E' && s[1] == 'A'
+		&& ft_isspace((unsigned char)s[2]))
+		set_texture(&d->east.path, s + 3, d);
+	else if ((*s == 'N' && s[1] == 'O')
+		|| (*s == 'S' && s[1] == 'O')
+		|| (*s == 'W' && s[1] == 'E')
+		|| (*s == 'E' && s[1] == 'A'))
+		die_parse("Error\nInvalid texture identifier", d);
 }
 
 void	parse_textures(char **cfg, t_data *d)
@@ -44,25 +70,12 @@ void	parse_textures(char **cfg, t_data *d)
 	int	i;
 
 	i = 0;
-	d->north.path = NULL;
-	d->south.path = NULL;
-	d->west.path = NULL;
-	d->east.path = NULL;
 	while (cfg[i])
 	{
-		if (!ft_strncmp(cfg[i], "NO", 2))
-			set_texture_path(&d->north.path, cfg[i]);
-		else if (!ft_strncmp(cfg[i], "SO", 2))
-			set_texture_path(&d->south.path, cfg[i]);
-		else if (!ft_strncmp(cfg[i], "WE", 2))
-			set_texture_path(&d->west.path, cfg[i]);
-		else if (!ft_strncmp(cfg[i], "EA", 2))
-			set_texture_path(&d->east.path, cfg[i]);
+		parse_texture_line(cfg[i], d);
 		i++;
 	}
-	if (!d->north.path || !d->south.path || !d->west.path || !d->east.path)
-	{
-		printf("Error\nMissing one or more texture paths (NO/SO/WE/EA)\n");
-		exit(1);
-	}
+	if (!d->north.path || !d->south.path
+		|| !d->west.path || !d->east.path)
+		die_parse("Error\nMissing one or more texture paths", d);
 }
