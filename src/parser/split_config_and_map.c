@@ -53,10 +53,15 @@ static int	is_blank_line(const char *s)
 int	split_config_and_map(char **lines, char ***cfg_out, char ***map_out)
 {
 	int		i, in_map, c, m;
+    int		count;
 	char	**cfg, **map;
 
-	cfg = malloc(sizeof(char *) * 100); 
-	map = malloc(sizeof(char *) * 100);
+    count = 0;
+    while (lines[count])
+        count++;
+
+    cfg = malloc(sizeof(char *) * (count + 1));
+    map = malloc(sizeof(char *) * (count + 1));
 	if (!cfg || !map)
 		return (0);
 	i = 0;
