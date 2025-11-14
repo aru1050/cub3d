@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:20:15 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 18:07:07 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/14 16:53:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		die_parse("Error\nUsage: ./cub3D <map.cub>", NULL);
+	// if (HEIGHT <= 0 || WIDTH <= 0)
+	// 	die_parse("Error", NULL);
 	ft_memset(&data, 0, sizeof(t_data));
 	// parse_file(argv[1], &data);
 	init_cub(&data, argv);
