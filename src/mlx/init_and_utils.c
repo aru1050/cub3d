@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_and_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:52:34 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/14 18:37:22 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/17 14:49:37 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	init_cub(t_data *d, char **argv)
 {
 	if (!argv[1])
-		die_parse("Error\nMissing .cub file", d);
+		die_parse("Error\nMissing .cub file", d);	
+	if (!parse_file(argv[1], d))
+		die_parse("Error\nparse_file failed", d);
 	d->mlx = mlx_init();
 	if (!d->mlx)
 		die_parse("Error\nmlx_init failed", d);
-	if (!parse_file(argv[1], d))
-		die_parse("Error\nparse_file failed", d);
 	load_all_textures(d);
 	d->win = mlx_new_window(d->mlx, WIDTH, HEIGHT, "cub3d");
 	if (!d->win)
