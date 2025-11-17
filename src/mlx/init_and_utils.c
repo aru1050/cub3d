@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_and_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:52:34 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/17 14:49:37 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/17 23:09:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ void	init_cub(t_data *d, char **argv)
 	if (!d->mlx)
 		die_parse("Error\nmlx_init failed", d);
 	load_all_textures(d);
+		d->win = mlx_new_window(d->mlx, WIDTH, HEIGHT, "cub3d");
+	if (!d->win)
+		die_parse("Error\nmlx_new_window failed", d);
+	d->img = mlx_new_image(d->mlx, WIDTH, HEIGHT);
+	if (!d->img)
+		die_parse("Error\nmlx_new_image failed", d);
+	d->addr = mlx_get_data_addr(d->img, &d->bpp, &d->line_len, &d->endian);
+	if (!d->addr)
+		die_parse("Error\nmlx_get_data_addr failed", d);
 }
 
 int	shade_color(int color, double f)
