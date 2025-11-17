@@ -6,7 +6,7 @@
 /*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:36:01 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/31 17:36:02 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/17 14:32:14 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	die_parse(const char *msg, t_data *d)
 	(void)d;
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
+	close_window(d);
 	exit(1);
 }
 
