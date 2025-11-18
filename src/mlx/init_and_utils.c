@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 14:52:34 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/17 23:09:37 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/18 18:45:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	init_cub(t_data *d, char **argv)
 	if (!d->mlx)
 		die_parse("Error\nmlx_init failed", d);
 	load_all_textures(d);
-		d->win = mlx_new_window(d->mlx, WIDTH, HEIGHT, "cub3d");
+	d->win = mlx_new_window(d->mlx, WIDTH, HEIGHT, "cub3d");
 	if (!d->win)
 		die_parse("Error\nmlx_new_window failed", d);
 	d->img = mlx_new_image(d->mlx, WIDTH, HEIGHT);

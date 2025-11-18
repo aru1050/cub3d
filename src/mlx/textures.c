@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:06:03 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/11 17:36:51 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/18 18:45:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 void	load_texture(t_data *d, t_texture *tex)
 {
-	tex->img = mlx_xpm_file_to_image(d->mlx, tex->path, &tex->width, &tex->height);
+	tex->img = mlx_xpm_file_to_image
+		(d->mlx, tex->path, &tex->width, &tex->height);
 	if (!tex->img)
 		die_parse("Error\nFailed to load texture", d);
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
+	tex->addr = mlx_get_data_addr
+		(tex->img, &tex->bpp, &tex->line_len, &tex->endian);
 	if (!tex->addr)
 		die_parse("Error\nmlx_get_data_addr failed", d);
 }
