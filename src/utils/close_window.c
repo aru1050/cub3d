@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   close_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 12:12:07 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/03 12:13:36 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/18 19:12:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_map(t_map *map)
+void	destroy_all_textures(t_data *d)
 {
-	int	y;
-
-	if (!map || !map->grid)
-		return ;
-	y = 0;
-	while (y < map->height)
-	{
-		free(map->grid[y]);
-		y++;
-	}
-	free(map->grid);
-	map->grid = NULL;
+	if (d->north.img)
+		mlx_destroy_image(d->mlx, d->north.img);
+	if (d->south.img)
+		mlx_destroy_image(d->mlx, d->south.img);
+	if (d->west.img)
+		mlx_destroy_image(d->mlx, d->west.img);
+	if (d->east.img)
+		mlx_destroy_image(d->mlx, d->east.img);
+	d->north.img = NULL;
+	d->south.img = NULL;
+	d->west.img = NULL;
+	d->east.img = NULL;
 }
 
 static void	free_texture_paths(t_data *d)
@@ -42,6 +42,22 @@ static void	free_texture_paths(t_data *d)
 	d->south.path = NULL;
 	d->west.path = NULL;
 	d->east.path = NULL;
+}
+
+static void	free_map(t_map *map)
+{
+	int	y;
+
+	if (!map || !map->grid)
+		return ;
+	y = 0;
+	while (y < map->height)
+	{
+		free(map->grid[y]);
+		y++;
+	}
+	free(map->grid);
+	map->grid = NULL;
 }
 
 int	close_window(t_data *data)
