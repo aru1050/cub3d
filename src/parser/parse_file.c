@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:17:54 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/17 14:51:33 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/21 10:20:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,55 @@ int	parse_file(const char *path, t_data *d)
 	char	**map_lines;
 	char	**raw;
 
+	d->p.lines = NULL;
+	d->p.cfg = NULL;
+	d->p.map_lines = NULL;
+	d->p.raw = NULL;
+
 	lines = read_all_lines(path);
 	if (!lines)
 		die_parse("Error\nCannot read file", d);
+	d->p.lines = lines;
 	if (!split_config_and_map(lines, &cfg, &map_lines))
 		die_parse("Error\nInvalid file structure", d);
+	d->p.cfg = cfg;
+	d->p.map_lines = map_lines;
 	parse_textures(cfg, d);
 	parse_colors(cfg, d);
 	raw = collect_raw_map(map_lines);
 	if (!raw)
 		die_parse("Error\nFailed to read map", d);
+	d->p.raw = raw;
 	normalize_map(raw, &d->map);
-	validate_chars_and_spawn(&d->map, &d->player);
-	check_map_closed(&d->map);
+	validate_chars_and_spawn(&d->map, &d->player, d);
+	check_map_closed(&d->map, d);
 	free_strarray(lines);
 	free_strarray(cfg);
 	free_strarray(map_lines);
 	free_strarray(raw);
+	d->p.lines = NULL;
+	d->p.cfg = NULL;
+	d->p.map_lines = NULL;
+	d->p.raw = NULL;
 	return (1);
 }
+
+/*
+➕ Ajout : initialisation du parsing
+d->p.lines = NULL;
+d->p.cfg = NULL;
+d->p.map_lines = NULL;
+d->p.raw = NULL;
+
+➕ Ajout : sauvegarde de chaque allocation
+d->p.lines = lines;
+d->p.cfg = cfg;
+d->p.map_lines = map_lines;
+d->p.raw = raw;
+
+➕ Ajout : nettoyage final
+d->p.lines = NULL;
+d->p.cfg = NULL;
+d->p.map_lines = NULL;
+d->p.raw = NULL;
+*/

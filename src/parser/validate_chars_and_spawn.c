@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_chars_and_spawn.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:06:26 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 12:06:27 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/21 10:01:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	set_player(t_player *pl, int i, int j, char dir)
 	pl->plane_y = pl->dir_x * 0.66;
 }
 
-void	validate_chars_and_spawn(t_map *map, t_player *pl)
+void	validate_chars_and_spawn(t_map *map, t_player *pl, t_data *d)
 {
 	int		i;
 	int		j;
@@ -46,16 +46,25 @@ void	validate_chars_and_spawn(t_map *map, t_player *pl)
 		{
 			c = map->grid[i][j];
 			if (!is_valid_char(c))
-				die_parse("Error\nInvalid character in map", NULL);
+				die_parse("Error\nInvalid character in map", d);
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
 				if (++spawn > 1)
-					die_parse("Error\nMultiple player spawns", NULL);
+					die_parse("Error\nMultiple player spawns", d);
 				set_player(pl, i, j, c);
 				map->grid[i][j] = '0';
 			}
 		}
 	}
 	if (spawn == 0)
-		die_parse("Error\nNo player found in map", NULL);
+		die_parse("Error\nNo player found in map", d);
 }
+
+/*
+-void    validate_chars_and_spawn(t_map *map, t_player *pl)
++void    validate_chars_and_spawn(t_map *map, t_player *pl, t_data *d)
+
+tous les die_parse(, NULL) en (, d)
+- die_parse("Error\nInvalid character in map", NULL);
++ die_parse("Error\nInvalid character in map", d);
+*/

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:05:55 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/01 00:11:30 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/21 10:05:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static void	free_copy(char **v, int h)
 	free(v);
 }
 
-static void	check_leaks(char **v, const t_map *map)
+static void	check_leaks(char **v, const t_map *map, t_data *d)
 {
 	int	x;
 	int	y;
@@ -133,7 +133,10 @@ static void	check_leaks(char **v, const t_map *map)
 				|| v[y][x] == '#' || v[y][x + 1] == '#'
 				|| v[y][x - 1] == '#' || v[y + 1][x] == '#'
 				|| v[y - 1][x] == '#'))
-				die_parse("Error\nMap not closed", NULL);
+			{
+				free_copy(v, map->height);
+				die_parse("Error\nMap not closed", d);
+			}
 			x++;
 		}
 		y++;
@@ -141,13 +144,29 @@ static void	check_leaks(char **v, const t_map *map)
 	free_copy(v, map->height);
 }
 
-void	check_map_closed(const t_map *map)
+void	check_map_closed(const t_map *map, t_data *d)
 {
 	char	**v;
 
 	v = copy_map(map);
 	if (!v)
-		die_parse("Error\nMalloc failed (map copy)", NULL);
+		die_parse("Error\nMalloc failed (map copy)", d);
 	fill_borders(v, map);
-	check_leaks(v, map);
+	check_leaks(v, map, d);
 }
+
+/*
+- void check_map_closed(const t_map *map)
++ void check_map_closed(const t_map *map, t_data *d)
+
+- static void check_leaks(char **v, const t_map *map)
++ static void check_leaks(char **v, const t_map *map, t_data *d)
+
+- die_parse(..., NULL)
++ die_parse(..., d)
+
+Dans le if de check_leaks 
++ free_copy(v, map->height);
+- die_parse("Error\nMap not closed", NULL);
++ die_parse("Error\nMap not closed", d);
+*/
