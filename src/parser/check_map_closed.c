@@ -6,17 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:05:55 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/21 10:05:00 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/21 18:19:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-typedef struct s_point
-{
-	int	x;
-	int	y;
-}	t_point;
 
 static int	in_bounds(int x, int y, int w, int h)
 {
@@ -154,19 +148,3 @@ void	check_map_closed(const t_map *map, t_data *d)
 	fill_borders(v, map);
 	check_leaks(v, map, d);
 }
-
-/*
-- void check_map_closed(const t_map *map)
-+ void check_map_closed(const t_map *map, t_data *d)
-
-- static void check_leaks(char **v, const t_map *map)
-+ static void check_leaks(char **v, const t_map *map, t_data *d)
-
-- die_parse(..., NULL)
-+ die_parse(..., d)
-
-Dans le if de check_leaks 
-+ free_copy(v, map->height);
-- die_parse("Error\nMap not closed", NULL);
-+ die_parse("Error\nMap not closed", d);
-*/

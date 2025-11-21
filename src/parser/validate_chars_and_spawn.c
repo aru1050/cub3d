@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:06:26 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/21 10:01:23 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/21 18:25:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,3 @@ void	validate_chars_and_spawn(t_map *map, t_player *pl, t_data *d)
 	if (spawn == 0)
 		die_parse("Error\nNo player found in map", d);
 }
-
-/*
--void    validate_chars_and_spawn(t_map *map, t_player *pl)
-+void    validate_chars_and_spawn(t_map *map, t_player *pl, t_data *d)
-
-tous les die_parse(, NULL) en (, d)
-- die_parse("Error\nInvalid character in map", NULL);
-+ die_parse("Error\nInvalid character in map", d);
-*/

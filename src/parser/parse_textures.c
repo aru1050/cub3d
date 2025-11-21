@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   parse_textures.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:06:15 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 12:06:16 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/21 18:24:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "cub3d.h"
 
 #include "cub3d.h"
 

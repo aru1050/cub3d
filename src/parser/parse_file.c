@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:17:54 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/21 10:20:34 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/21 18:29:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,3 @@ int	parse_file(const char *path, t_data *d)
 	d->p.raw = NULL;
 	return (1);
 }
-
-/*
-➕ Ajout : initialisation du parsing
-d->p.lines = NULL;
-d->p.cfg = NULL;
-d->p.map_lines = NULL;
-d->p.raw = NULL;
-
-➕ Ajout : sauvegarde de chaque allocation
-d->p.lines = lines;
-d->p.cfg = cfg;
-d->p.map_lines = map_lines;
-d->p.raw = raw;
-
-➕ Ajout : nettoyage final
-d->p.lines = NULL;
-d->p.cfg = NULL;
-d->p.map_lines = NULL;
-d->p.raw = NULL;
-*/

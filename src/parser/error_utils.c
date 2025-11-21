@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/31 17:36:01 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/21 10:24:16 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/21 18:20:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	free_parsing(t_data *d) // <- AJOUT
+static void	free_parsing(t_data *d)
 {
 	if (!d)
 		return ;
@@ -31,7 +31,7 @@ void	die_parse(const char *msg, t_data *d)
 	(void)d;
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
-	free_parsing(d); // <- AJOUT
+	free_parsing(d);
 	close_window(d);
 	exit(1);
 }

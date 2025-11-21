@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_normalize.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:06:06 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/21 12:06:07 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/21 18:23:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	normalize_map(char **raw, t_map *map)
 			map->grid[i][j] = raw[i][j];
 			j++;
 		}
-		map->grid[i][map->width] = '\0';
-		i++;
+		map->grid[i++][map->width] = '\0';
 	}
 }

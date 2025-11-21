@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/21 10:22:59 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/21 18:19:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,13 @@ typedef struct s_parsing
 	char	**cfg;
 	char	**map_lines;
 	char	**raw;
-}	t_parsing; // <- AJOUT
+}	t_parsing;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 typedef struct s_data
 {
@@ -160,7 +166,7 @@ typedef struct s_data
 	int			screen_width;
 	int			screen_height;
 	int			is_closed;
-	t_parsing	p;      // <- AJOUT
+	t_parsing	p;
 }	t_data;
 
 void		draw_wall(t_data *d, int x, t_ray *r);
@@ -187,7 +193,7 @@ int			key_release(int keycode, t_data *data);
 int			game_loop(t_data *data);
 int			close_window(t_data *data);
 
-void		check_map_closed(const t_map *map, t_data *d); // changer
+void		check_map_closed(const t_map *map, t_data *d);
 char		**collect_raw_map(char **map_lines);
 void		normalize_map(char **raw, t_map *map);
 void		parse_colors(char **cfg, t_data *d);
@@ -195,9 +201,9 @@ void		parse_textures(char **cfg, t_data *d);
 char		**read_all_lines(const char *path);
 int			split_config_and_map(char **lines,
 				char ***cfg_out, char ***map_out);
-void		validate_chars_and_spawn(t_map *map, t_player *pl, t_data *d); // changer
-int			parse_file(const char *path, t_data *d); // changer
-void		die_parse(const char *msg, t_data *d); // changer
+void		validate_chars_and_spawn(t_map *map, t_player *pl, t_data *d);
+int			parse_file(const char *path, t_data *d);
+void		die_parse(const char *msg, t_data *d);
 void		free_strarray(char **a);
 
 #endif
