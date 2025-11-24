@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/21 18:19:23 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/24 23:53:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,5 +205,8 @@ void		validate_chars_and_spawn(t_map *map, t_player *pl, t_data *d);
 int			parse_file(const char *path, t_data *d);
 void		die_parse(const char *msg, t_data *d);
 void		free_strarray(char **a);
+char		**copy_map(const t_map *map);
+void		free_copy(char **v, int h);
+void		mark_outside(char **v, int w, int h, t_point p);
 
 #endif

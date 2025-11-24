@@ -15,6 +15,8 @@ SRCS    =	src/main.c \
 			src/parser/check_map_closed.c \
 			src/parser/map_collect.c \
 			src/parser/map_normalize.c \
+			src/parser/map_copy.c \
+			src/parser/flood_fill.c \
 			src/parser/parse_color.c \
 			src/parser/parse_textures.c \
 			src/parser/read_all_lines.c \
