@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_config_and_map.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:06:22 by athamilc          #+#    #+#             */
-/*   Updated: 2025/10/30 13:06:55 by athamilc         ###   ########.fr       */
+/*   Updated: 2025/11/24 02:13:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static int	is_map_line(const char *s)
 {
-	int	i;
-	int	has_symbol;
+	int		i;
+	int		has_symbol;
+	char	c;
 
 	if (!s)
 		return (0);
@@ -23,11 +24,12 @@ static int	is_map_line(const char *s)
 	has_symbol = 0;
 	while (s[i] && s[i] != '\n')
 	{
-		char c = s[i];
+		c = s[i];
 		if (c != ' ' && c != '0' && c != '1'
 			&& c != 'N' && c != 'S' && c != 'E' && c != 'W')
 			return (0);
-		if (c == '0' || c == '1' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		if (c == '0' || c == '1' || c == 'N'
+			|| c == 'S' || c == 'E' || c == 'W')
 			has_symbol = 1;
 		i++;
 	}
@@ -50,20 +52,13 @@ static int	is_blank_line(const char *s)
 	return (1);
 }
 
-int	split_config_and_map(char **lines, char ***cfg_out, char ***map_out)
+static void	split_fill(char **lines, char **cfg, char **map)
 {
-	int		i, in_map, c, m;
-    int		count;
-	char	**cfg, **map;
+	int	i;
+	int	c;
+	int	m;
+	int	in_map;
 
-    count = 0;
-    while (lines[count])
-        count++;
-
-    cfg = malloc(sizeof(char *) * (count + 1));
-    map = malloc(sizeof(char *) * (count + 1));
-	if (!cfg || !map)
-		return (0);
 	i = 0;
 	c = 0;
 	m = 0;
@@ -80,6 +75,22 @@ int	split_config_and_map(char **lines, char ***cfg_out, char ***map_out)
 	}
 	cfg[c] = NULL;
 	map[m] = NULL;
+}
+
+int	split_config_and_map(char **lines, char ***cfg_out, char ***map_out)
+{
+	char	**cfg;
+	char	**map;
+	int		count;
+
+	count = 0;
+	while (lines[count])
+		count++;
+	cfg = malloc(sizeof(char *) * (count + 1));
+	map = malloc(sizeof(char *) * (count + 1));
+	if (!cfg || !map)
+		return (0);
+	split_fill(lines, cfg, map);
 	*cfg_out = cfg;
 	*map_out = map;
 	return (1);
