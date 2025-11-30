@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: athamilc <athamilc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 11:56:17 by athamilc          #+#    #+#             */
-/*   Updated: 2025/11/24 23:53:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/11/30 13:52:08 by athamilc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define LEFT_ARROW     65361
 # define MOVE_SPEED     0.03
 
-# define WIDTH          800
-# define HEIGHT         800
+# define WIDTH          1280
+# define HEIGHT         720
 # define TILE_SIZE      64
 # define FOV            60
 # define BUG            0
